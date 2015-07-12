@@ -1,4 +1,12 @@
 var secrets = require('./secrets');
+var HtmlReporter = require('protractor-html-screenshot-reporter');
+
+var timeStamp = new Date().toISOString();
+
+var reporter = new HtmlReporter({
+  baseDirectory: './tmp/results/' + timeStamp,
+  takeScreenShotsOnlyForFailedSpecs: true
+});
 
 exports.config = {
   seleniumAddress: 'http://localhost:4444/wd/hub',
@@ -15,11 +23,9 @@ exports.config = {
     login: secrets.credentials
   },
 
-  framework: 'jasmine2',
+  // framework: 'jasmine2',
 
   onPrepare: function() {
-    require('jasmine-reporters');
-    var ScreenshotReporter = require('./screenshotReporter');
-    jasmine.getEnv().addReporter(new ScreenshotReporter());
+    jasmine.getEnv().addReporter(reporter);
   }
 };
