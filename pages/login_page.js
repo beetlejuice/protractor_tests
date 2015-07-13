@@ -1,3 +1,5 @@
+var BasePage = require('./base_page');
+
 var LoginPage = function() {
   var url = '#/';
   var txtLogin = $('#inputLogin');
@@ -8,7 +10,7 @@ var LoginPage = function() {
     browser.get(url);
   };
 
-  this.login = function(username, password) {
+  this.logIn = function(username, password) {
     username = username === undefined ? browser.params.login.username : username;
     password = password === undefined ? browser.params.login.password : password;
 
@@ -22,4 +24,5 @@ var LoginPage = function() {
   };
 };
 
+LoginPage.prototype = BasePage;
 module.exports = new LoginPage();

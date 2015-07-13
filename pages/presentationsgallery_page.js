@@ -1,3 +1,5 @@
+var BasePage = require('./base_page');
+
 var PresentationsGalleryPage = function() {
   var lblTitle = $('h4');
   var btnCreateTemplate = $('.btn.add-presentation.ng-scope');
@@ -13,4 +15,5 @@ var PresentationsGalleryPage = function() {
   };
 };
 
+PresentationsGalleryPage.prototype = BasePage;
 module.exports = new PresentationsGalleryPage();
